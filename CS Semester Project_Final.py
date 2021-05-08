@@ -1,12 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Spyder Editor
-
-This is a temporary script file.
-"""
-
-
-
 #Import statements required for some code functionality 
 #Implementing web scraping in python with beautifulsoup. (2020, August 20). Retrieved March 11, 2021, from https://www.geeksforgeeks.org/implementing-web-scraping-python-beautiful-soup/
 #J. (2016, March 12). Check if certain value is contained in a dataframe column in pandas. Retrieved February 28, 2021, from https://stackoverflow.com/questions/35956712/check-if-certain-value-is-contained-in-a-dataframe-column-in-pandas
@@ -232,36 +223,44 @@ df.to_csv('nba.csv', index=False, encoding = 'utf-8') #Creates a CSV file with e
 #Read CSV file back into python script - NOTE: COMMENT OUT THE FOLLOWING LINE TO ALLOW THE SCRIPT TO WORK ON YOUR OWN COMPUTER
 #df = pd.read_csv("/Users/rsemunegus/Desktop/cs5010/hw/nba.csv")
 
-### Manpreet's ###
+## -- DATA CLEANING -- ##
+
+print(len(df)) # Checks current size of the dataset
+df = df.drop_duplicates() # Drops any duplicate rows in teh data
+print(len(df)) # Checks dataset size after dropping duplicates (there are no duploicates)
+df = df.dropna() # Drops any rows with missing data (there is no missing data)
 
 #finding average 3-point field goals by Season and Position
 allseasons =df.groupby(['Position','Season']).mean()['Average 3-Point Field Goals Made']
+#created a series by grouping the dataframe by position then by season
+#then finding the average 3-point for each of that grouping
 
-C3n = allseasons.xs("C",axis=0)
-G3n = allseasons.xs("G",axis=0)
-PG3n = allseasons.xs("PG",axis=0)
-SG3n = allseasons.xs("SG",axis=0)
-F3n = allseasons.xs("F",axis=0)
-SF3n = allseasons.xs("SF",axis=0)
-PF3n = allseasons.xs("PF",axis=0)
+C3n = allseasons.xs("C",axis=0) #create a series from the grouped series just for Centers
+G3n = allseasons.xs("G",axis=0) ##create a series from the grouped series just for Guards
+PG3n = allseasons.xs("PG",axis=0) #create a series from the grouped series just for PGs
+SG3n = allseasons.xs("SG",axis=0) #create a series from the grouped series just for SGs
+F3n = allseasons.xs("F",axis=0) #create a series from the grouped series just for Forwards
+SF3n = allseasons.xs("SF",axis=0) #create a series from the grouped series just for SFs
+PF3n = allseasons.xs("PF",axis=0) #create a series from the grouped series just for PFs
 
 #Finding the number of players of each position for each season
 
 #Counts = df.groupby('Season')['Position'].value_counts()
 
-Final = df.groupby('Season')['Position'].value_counts().unstack().fillna(0)
+Final = df.groupby('Season')['Position'].value_counts().unstack().fillna(0) 
+#grouping by season and position then finding the actual count for each of that grouping
 #https://towardsdatascience.com/pandas-tips-and-tricks-33bcc8a40bb9
 #https://towardsdatascience.com/pandas-tips-and-tricks-33bcc8a40bb9
 #http://pytolearn.csd.auth.gr/b4-pandas/40/plotserdf.html
 #https://realpython.com/pandas-groupby/
 
-C = Final.xs('C', axis=1)
-G = Final.xs('G', axis=1)
-PG= Final.xs('PG', axis=1)
-SG = Final.xs('SG', axis=1)
-F = Final.xs('F', axis=1)
-SF = Final.xs('SF', axis=1)
-PF = Final.xs('PF', axis=1)
+C = Final.xs('C', axis=1) #create a series from the grouped dataframe just for Cs
+G = Final.xs('G', axis=1) #create a series from the grouped dataframe just for Gs
+PG= Final.xs('PG', axis=1) #create a series from the grouped dataframe just for PGs
+SG = Final.xs('SG', axis=1) #create a series from the grouped dataframe just for SGs
+F = Final.xs('F', axis=1) #create a series from the grouped dataframe just for Fs
+SF = Final.xs('SF', axis=1) #create a series from the grouped dataframe just for SFs
+PF = Final.xs('PF', axis=1) #create a series from the grouped dataframe just for PFs
 
 #bar plot for number of each position each season 
 p1 = C.plot(kind='bar', title='Number of Centers Each Season', yticks=[1, 10, 20])
@@ -273,18 +272,13 @@ p6 = SF.plot(kind='bar', title='Number of Small Forwards Each Season', yticks=[1
 p7 = PF.plot(kind='bar', title='Number of Power Forwards Each Season', yticks=[1, 10, 20])
 
 #bar plot for average 3-point field goals for each position
-p8 = C3n.plot(kind='bar', title='Average 3-Point Field Goalds for Centers Each Season', yticks=[1, 2, 3])
-p9 = G3n.plot(kind='bar', title='Average 3-Point Field Goalds for Guards Each Season', yticks=[1, 2, 3])
-p10 = PG3n.plot(kind='bar', title='Average 3-Point Field Goalds for Point Guards Each Season', yticks=[1, 2, 3])
-p11 = SG3n.plot(kind='bar', title='Average 3-Point Field Goalds for Shooting Guards Each Season', yticks=[1, 2, 3])
-p12 = F3n.plot(kind='bar', title='Average 3-Point Field Goalds for Forwards Each Season', yticks=[1, 2, 3])
-p13 = SF3n.plot(kind='bar', title='Average 3-Point Field Goalds for Small Forwards Each Season', yticks=[1, 2, 3])
-p14 = PF3n.plot(kind='bar', title='Average 3-Point Field Goalds for Power Forwards Each Season', yticks=[1, 2, 3])
-
-# =============================================================================
-# Robel's Code
-# =============================================================================
-
+p8 = C3n.plot(kind='bar', title='Average 3-Point Field Goals for Centers Each Season', yticks=[1, 2, 3])
+p9 = G3n.plot(kind='bar', title='Average 3-Point Field Goals for Guards Each Season', yticks=[1, 2, 3])
+p10 = PG3n.plot(kind='bar', title='Average 3-Point Field Goals for Point Guards Each Season', yticks=[1, 2, 3])
+p11 = SG3n.plot(kind='bar', title='Average 3-Point Field Goals for Shooting Guards Each Season', yticks=[1, 2, 3])
+p12 = F3n.plot(kind='bar', title='Average 3-Point Field Goals for Forwards Each Season', yticks=[1, 2, 3])
+p13 = SF3n.plot(kind='bar', title='Average 3-Point Field Goals for Small Forwards Each Season', yticks=[1, 2, 3])
+p14 = PF3n.plot(kind='bar', title='Average 3-Point Field Goals for Power Forwards Each Season', yticks=[1, 2, 3])
 
 
 #Sadawi, N. (Director). (2016, December 28). 34- Pandas DataFraames: Aggregation [Video file]. Retrieved March 26, 2021, from https://www.youtube.com/watch?v=2I2E1ZbF8pg&amp;ab_channel=NoureddinSadawi
@@ -294,56 +288,9 @@ p14 = PF3n.plot(kind='bar', title='Average 3-Point Field Goalds for Power Forwar
 # original = sys.stdout
 # sys.stdout = open('NBA Queries', 'a')
 
-## -- DATA CLEANING -- ##
-
-print(len(df)) # Checks current size of the dataset
-df = df.drop_duplicates() # Drops any duplicate rows in teh data
-print(len(df)) # Checks dataset size after dropping duplicates (there are no duploicates)
-df = df.dropna() # Drops any rows with missing data (there is no missing data)
-
-
 ## - START DATA QUERIES -- ##
 
 pd.set_option('display.max_rows', None) # How to print an entire pandas DataFrame in Python. (n.d.). Retrieved April 06, 2021, from https://www.kite.com/python/answers/how-to-print-an-entire-pandas-dataframe-in-python
-
-
-# Has the number of FGs attempted in a season increased over time?
-
-seasonGroup = df.groupby("Season")
-print(seasonGroup['Average Field Goals Attempted'].mean())
-
-fieldGoals = {}
-i = 0
-for fg in seasonGroup['Average Field Goals Attempted'].mean():
-
-	fieldGoals[years[i]] = fg
-	i +=  1
-
-# From Module 6 - Visualiation class resources 
-figure = plt.figure()
-plot =figure.add_subplot(1,1,1)
-
-plot.plot(fieldGoals.keys(), fieldGoals.values())
-
-plot.set_xticks([2002, 2008, 2014, 2020])
-plot.set_xlabel("Season")
-plot.set_ylabel("Average Field Goals Attempted")
-plot.set_title("Average FGs Attempted")
-
-plt.show()
-
-# What position has the highest PER?
-posGroup = df.groupby('Position')
-
-perPos = posGroup['Player Efficiency Rating'].mean()
-print(perPos)
-
-figure = plt.figure()
-plot = figure.add_subplot(1,1,1)
-plot.set_title("PER by Position")
-#Specifically from Visualizaiton.ipynb script - https://colab.research.google.com/drive/15vpBKRBuHnbYSRbGgf1BG0xrW_hijAp-?usp=sharing#scrollTo=YoMb5RshMYbA
-sns.barplot(x="Position", y = "Player Efficiency Rating", data = df)
-plt.show()
 
 
 # Create a starting 5 based on points, rebounds, assists, blocks, and player efficiency
@@ -633,7 +580,7 @@ print("Based on the dataset and using the criteria of PPG, RPG, APG, BPG, and PE
 
 ## -- What position is least likely to turnover the ball? -- ##
 
-print(posGroup['Turnovers Per Game'].mean())
+#print(posGroup['Turnovers Per Game'].mean())
 
 
 ## -- Since the 2001-2002 season, have all the MVPs been in the top 10 list for scoreres? -- ##
@@ -718,9 +665,6 @@ for mvp in mvps:
 	count += 1
 	theMVPStats = []
 	theLebronStats = []
-
-
-### Amber's Code ###
 
 # Ask user for input (lower case and strip response)
 askPlayer = input("What player statistics do you want? ").lower().strip() 
