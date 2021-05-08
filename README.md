@@ -14,4 +14,5 @@ CS Semester Project_Final.py - Contains main code used for analysis and query of
 
 Testing_CS Final Project.py - Test code for CS Semester Project_Final.py
 
-Report - Contains detailed description of our project from data selection to conclusions
+Final Project Report.md - Contains detailed description of our project from data selection to conclusions
+
