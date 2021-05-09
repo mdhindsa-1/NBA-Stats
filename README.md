@@ -12,7 +12,7 @@ CS Project Presentation - Contains presentation visuals from live session video
 
 CS_Final_Project_Code.py - Contains main code used for analysis and query of data set. Please note that code will ask for user input for a player name and year (for a specific NBA season) during the compile/code run. Python libraries that need to be installed are numpy, pandas, matplotlib.pyplot, BeautifulSoup (from bs4), and seaborn.
 
-Testing_CS Final Project.py - Test code for CS Semester Project_Final.py
+test_CS_Final_Project.py - Test code for CS Semester Project_Final.py
 
 Final Project Report.md - Contains detailed description of our project from data selection to conclusions
 
