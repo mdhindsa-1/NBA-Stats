@@ -16,4 +16,4 @@ Testing_CS Final Project.py - Test code for CS Semester Project_Final.py
 
 Final Project Report.md - Contains detailed description of our project from data selection to conclusions
 
-finalProjectCode.ipynb - Jupyter Notebook with main code and test code. Please note that code will ask for user input for a player name and year (for a specific NBA season)
+finalProjectCode.ipynb - Jupyter Notebook with main code and test code. Please note that code will ask for user input for a player name and year (for a specific NBA season). Python libraries that need to be installed are numpy, pandas, matplotlib.pyplot, BeautifulSoup (from bs4), and seaborn.
