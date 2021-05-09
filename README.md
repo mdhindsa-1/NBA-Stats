@@ -10,7 +10,7 @@ nba.csv - Data set that was used for our project; please note though that web sc
 
 CS Project Presentation - Contains presentation visuals from live session video
 
-CS_Final_Project_Code.py - Contains main code used for analysis and query of data set. Please note that code will ask for user input for a player name and year (for a specific NBA season) during the compile/code run. Python libraries that need to be installed are numpy, pandas, matplotlib.pyplot, BeautifulSoup (from bs4), and seaborn.
+CS_Final_Project_Code.py - Contains main code used for analysis and query of data set. Please note that code will ask for user input for a player name and year (for a specific NBA season) during the compile/code run. First user input will ask for an NBA basketball and second user input asks for a season year between 2002-2020. Python libraries that need to be installed are numpy, pandas, matplotlib.pyplot, BeautifulSoup (from bs4), and seaborn.
 
 test_CS_Final_Project.py - Test code for CS Semester Project_Final.py
 
